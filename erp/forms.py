@@ -1,6 +1,6 @@
 from django import forms
 
-from erp.models import Funcionario
+from erp.models import Funcionario, Produto, Venda
 
 
 class FuncionarioForm(forms.ModelForm):
@@ -13,3 +13,25 @@ class FuncionarioForm(forms.ModelForm):
     cpf = forms.CharField(max_length=14, required=True)
     email_funcional = forms.EmailField(max_length=100, required=True)
     remuneracao = forms.DecimalField(max_digits=8, decimal_places=2, required=True) """
+
+
+class ProdutoForm(forms.ModelForm):
+    class Meta:
+        model = Produto
+        fields = '__all__'
+        labels = {
+            'nome': 'Nome do Produto',
+            'descricao': 'Descrição',
+            'preco': 'Preço',
+        }
+
+
+class VendaForm(forms.ModelForm):
+    class Meta:
+        model = Venda
+        fields = '__all__'
+        labels = {
+            'funcionario': 'Funcionário',
+            'produto': 'Produto',
+            'data_hora': 'Data e Hora',
+        }

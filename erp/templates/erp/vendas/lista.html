@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Vendas - ERP</title>
+</head>
+<body>
+    <h1>Listagem de Vendas - ERP</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Funcionário</th>
+                <th>Produto</th>
+                <th>Data/hora</th>
+                <th>Ações</th>
+            </tr>
+    </table>
+</body>
+    {% for venda in vendas %}
+        <tr>
+            <td>{{ venda.id }}</td>
+            <td>{{ venda.funcionario }}</td>
+            <td>{{ venda.produto }}</td>
+            <td>{{ venda.data_hora }}</td>
+            <td><a href="{% url 'erp:atualiza_venda' pk=venda.id %}">Atualizar</a></td>
+            <td><a href="{% url 'erp:deleta_venda' pk=venda.id %}">Deletar</a></td>
+        </tr>
+    {% endfor %}
+</html>

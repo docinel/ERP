@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deleção de Vendas - ERP</title>
+</head>
+<body>
+    {% if venda %}
+    <h1>Deleção de Vendas - ERP</h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <p>Tem certeza que deseja deletar a venda {{ venda.id }}?</p>
+
+        <button type="submit">Deletar</button>
+
+    </form>
+    {% else %}
+    <h1>Venda não encontrada - ERP</h1>
+    {% endif %}
+    
+</body>
+</html>
