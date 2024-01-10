@@ -4,15 +4,30 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DetailView, DeleteView
 from erp.forms import FuncionarioForm, ProdutoForm
 from erp.models import Funcionario, Produto, Venda
-
+from django.contrib.auth.views import LoginView, LogoutView
 
 # Create your views here.
 # def home(request: HttpRequest):
 #     if request.method == 'GET':
 #         return render(request, 'erp/index.html')
 
+
+class ErpLoginView(LoginView):
+    template_name = 'erp/login.html'
+    success_url = reverse_lazy('erp:dashboard')
+    redirect_authenticated_user = True
+
+
+class ErpLogoutView(LogoutView):
+    template_name = 'erp/logout.html'
+
+
 class HomeView(TemplateView):
     template_name = 'erp/index.html'
+
+
+class DashboardView(TemplateView):
+    template_name = 'erp/dashboard.html'
 
 
 def cria_funcionario(request: HttpRequest):

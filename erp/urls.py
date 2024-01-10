@@ -1,6 +1,6 @@
 from django.urls import path
 from core import settings
-from erp.views import HomeView, ProdutoCreateView, ProdutoDeleteView
+from erp.views import DashboardView, ErpLoginView, ErpLogoutView, HomeView, ProdutoCreateView, ProdutoDeleteView
 from erp.views import ProdutoDetailView, ProdutoListView, ProdutoUpdateView
 from erp.views import VendaCreateView, VendaDeleteView, VendaDetailView, VendaListView
 from erp.views import VendaUpdateView, atualiza_funcionario, busca_funcionario_por_id
@@ -10,7 +10,11 @@ from erp.views import cria_funcionario, lista_funcionarios
 app_name = 'erp'
 urlpatterns = [
     path('', HomeView.as_view()),
-    # path('', home, name='home'),
+
+    # Login
+    path('login/', ErpLoginView.as_view(), name='login'),
+    path('logout/', ErpLogoutView.as_view(), name='logout'),
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
 
     # Funcionarios
     path('funcionarios/', lista_funcionarios, name='lista_funcionarios'),
@@ -31,6 +35,7 @@ urlpatterns = [
     path('vendas/atualiza/<int:pk>/', VendaUpdateView.as_view(), name='atualiza_venda'),
     path('vendas/detalhe/<int:pk>/', VendaDetailView.as_view(), name='detalhe_venda'),
     path('vendas/deleta/<int:pk>/', VendaDeleteView.as_view(), name='deleta_venda'),
+
 ]
 
 if settings.DEBUG:
